@@ -6,14 +6,14 @@ A Uniesp mantém uma **Fábrica de Software** vinculada às disciplinas prática
 
 ### **Objetivo Geral**
 
-O sistema deve apoiar o ciclo semestral da Fábrica: 
+O sistema deve apoiar o ciclo semestral da Fábrica:
 
 - cadastrar pessoas e projetos,
 - relacionar alunos a projetos de acordo com suas stacks de conhecimento,
 - registrar documentos pertinentes dos alunos (como certificados externos de cursos),
 - acompanhar a participação durante o semestre e,
 - ao final, emitir certificados de participação padronizados,
-    - com possibilidade de verificação desses certificados por meio de um link/QR.
+  - com possibilidade de verificação desses certificados por meio de um link/QR.
 
 ### **Atores e Visão de Uso**
 

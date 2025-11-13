@@ -5,6 +5,8 @@ import com.etuniesp.fabrica_software.aluno.AlunoRepository;
 import com.etuniesp.fabrica_software.professor.Professor;
 import com.etuniesp.fabrica_software.professor.ProfessorRepository;
 import com.etuniesp.fabrica_software.projeto.dto.*;
+import com.etuniesp.fabrica_software.stack.StackTecnologia;
+import com.etuniesp.fabrica_software.stack.StackTecRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.*;
@@ -22,11 +24,13 @@ public class ProjetoServiceImpl implements ProjetoService {
     private final ProjetoRepository repo;
     private final ProfessorRepository professorRepo;
     private final AlunoRepository alunoRepo;
+    private final StackTecRepository stackRepo;
 
     @Override
     public ProjetoResponseDTO criar(ProjetoCreateDTO dto) {
         Projeto entidade = new Projeto();
-        aplicarDTO(entidade, dto.titulo(), dto.descricao(), dto.dataInicio(), dto.dataFim(), dto.professorId(), dto.alunosIds());
+        aplicarDTO(entidade, dto.titulo(), dto.descricao(), dto.semestre(), dto.tipo(), dto.empresaParceira(), 
+                   dto.status(), dto.dataInicio(), dto.dataFim(), dto.professorId(), dto.stacksIds(), dto.alunosIds());
         Projeto salvo = repo.save(entidade);
         return toResponse(salvo);
     }
@@ -35,7 +39,8 @@ public class ProjetoServiceImpl implements ProjetoService {
     public ProjetoResponseDTO atualizar(Long id, ProjetoUpdateDTO dto) {
         Projeto existente = repo.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Projeto não encontrado: " + id));
-        aplicarDTO(existente, dto.titulo(), dto.descricao(), dto.dataInicio(), dto.dataFim(), dto.professorId(), dto.alunosIds());
+        aplicarDTO(existente, dto.titulo(), dto.descricao(), dto.semestre(), dto.tipo(), dto.empresaParceira(), 
+                   dto.status(), dto.dataInicio(), dto.dataFim(), dto.professorId(), dto.stacksIds(), dto.alunosIds());
         return toResponse(existente);
     }
 
@@ -72,12 +77,21 @@ public class ProjetoServiceImpl implements ProjetoService {
         return page.map(this::toResponse);
     }
 
-    private void aplicarDTO(Projeto p, String titulo, String descricao, java.time.LocalDate di, java.time.LocalDate df,
-                             Long professorId, Set<Long> alunosIds) {
+    private void aplicarDTO(Projeto p, String titulo, String descricao, String semestre, 
+                             com.etuniesp.fabrica_software.projeto.enums.TipoProjeto tipo, 
+                             String empresaParceira,
+                             com.etuniesp.fabrica_software.projeto.enums.StatusProjeto status,
+                             java.time.LocalDate di, java.time.LocalDate df,
+                             Long professorId, Set<Long> stacksIds, Set<Long> alunosIds) {
         p.setTitulo(titulo);
         p.setDescricao(descricao);
+        p.setSemestre(semestre);
+        p.setTipo(tipo != null ? tipo : com.etuniesp.fabrica_software.projeto.enums.TipoProjeto.AUTORAL);
+        p.setEmpresaParceira(empresaParceira);
+        p.setStatus(status != null ? status : com.etuniesp.fabrica_software.projeto.enums.StatusProjeto.PLANEJADO);
         p.setDataInicio(di);
         p.setDataFim(df);
+        
         if (professorId != null) {
             Professor prof = professorRepo.findById(professorId)
                     .orElseThrow(() -> new EntityNotFoundException("Professor não encontrado: " + professorId));
@@ -85,6 +99,19 @@ public class ProjetoServiceImpl implements ProjetoService {
         } else {
             p.setProfessor(null);
         }
+        
+        // Gerenciar stacks desejadas
+        if (stacksIds == null || stacksIds.isEmpty()) {
+            p.getStacksDesejadas().clear();
+        } else {
+            Set<StackTecnologia> stacks = stacksIds.stream()
+                    .map(sid -> stackRepo.findById(sid)
+                            .orElseThrow(() -> new EntityNotFoundException("Stack não encontrada: " + sid)))
+                    .collect(Collectors.toSet());
+            p.setStacksDesejadas(stacks);
+        }
+        
+        // Gerenciar alunos
         if (alunosIds == null || alunosIds.isEmpty()) {
             p.getAlunos().clear();
         } else {
@@ -99,15 +126,23 @@ public class ProjetoServiceImpl implements ProjetoService {
     private ProjetoResponseDTO toResponse(Projeto p) {
         Long profId = p.getProfessor() != null ? p.getProfessor().getId() : null;
         String profNome = p.getProfessor() != null ? p.getProfessor().getNome() : null;
-        Set<Long> alunosIds = p.getAlunos() != null ? p.getAlunos().stream().map(Aluno::getId).collect(Collectors.toSet()) : Set.of();
+        Set<Long> stacksIds = p.getStacksDesejadas() != null ? 
+                p.getStacksDesejadas().stream().map(StackTecnologia::getId).collect(Collectors.toSet()) : Set.of();
+        Set<Long> alunosIds = p.getAlunos() != null ? 
+                p.getAlunos().stream().map(Aluno::getId).collect(Collectors.toSet()) : Set.of();
         return new ProjetoResponseDTO(
                 p.getId(),
                 p.getTitulo(),
                 p.getDescricao(),
+                p.getSemestre(),
+                p.getTipo(),
+                p.getEmpresaParceira(),
+                p.getStatus(),
                 p.getDataInicio(),
                 p.getDataFim(),
                 profId,
                 profNome,
+                stacksIds,
                 alunosIds
         );
     }
