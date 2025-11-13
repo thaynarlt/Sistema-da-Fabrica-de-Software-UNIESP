@@ -1,190 +1,308 @@
 {
-    "_type": "export",
-    "__export_format": 4,
-    "__export_date": "2025-10-28T22:00:00.000Z",
-    "__export_source": "insomnia.desktop.app:v2023.5.8",
-    "resources": [
+  "_type": "export",
+  "__export_format": 4,
+  "__export_date": "2025-10-28T22:00:00.000Z",
+  "__export_source": "insomnia.desktop.app:v2023.5.8",
+  "resources": [
+    {
+      "_id": "req_1",
+      "parentId": "fld_1",
+      "name": "Listar Stacks",
+      "url": "{{ _.base_url }}/stacks",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "_type": "request"
+    },
+    {
+      "_id": "req_2",
+      "parentId": "fld_2",
+      "name": "Criar Aluno",
+      "url": "{{ _.base_url }}/alunos",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"nome\": \"João Silva\",\n  \"email\": \"joao.silva@uniesp.edu.br\",\n  \"telefone\": \"(11) 98765-4321\",\n  \"curso\": \"CIENCIA_DA_COMPUTACAO\",\n  \"matricula\": \"2024001\",\n  \"periodo\": \"P3\",\n  \"stacksIds\": [1, 2, 5]\n}"
+      },
+      "parameters": [],
+      "headers": [
         {
-            "_id": "req_1",
-            "parentId": "fld_1",
-            "name": "Listar Stacks",
-            "url": "{{ _.base_url }}/stacks",
-            "method": "GET",
-            "body": {},
-            "parameters": [],
-            "headers": [],
-            "_type": "request"
-        },
-        {
-            "_id": "req_2",
-            "parentId": "fld_2",
-            "name": "Criar Aluno",
-            "url": "{{ _.base_url }}/alunos",
-            "method": "POST",
-            "body": {
-                "mimeType": "application/json",
-                "text": "{\n  \"nome\": \"João Silva\",\n  \"email\": \"joao.silva@uniesp.edu.br\",\n  \"telefone\": \"(11) 98765-4321\",\n  \"curso\": \"CIENCIA_DA_COMPUTACAO\",\n  \"matricula\": \"2024001\",\n  \"periodo\": \"P3\",\n  \"stacksIds\": [1, 2, 5]\n}"
-            },
-            "parameters": [],
-            "headers": [
-                {
-                    "name": "Content-Type",
-                    "value": "application/json"
-                }
-            ],
-            "_type": "request"
-        },
-        {
-            "_id": "req_3",
-            "parentId": "fld_2",
-            "name": "Listar Alunos",
-            "url": "{{ _.base_url }}/alunos",
-            "method": "GET",
-            "body": {},
-            "parameters": [],
-            "headers": [],
-            "_type": "request"
-        },
-        {
-            "_id": "req_4",
-            "parentId": "fld_2",
-            "name": "Listar Alunos (com busca)",
-            "url": "{{ _.base_url }}/alunos?q=João",
-            "method": "GET",
-            "body": {},
-            "parameters": [
-                {
-                    "name": "q",
-                    "value": "João"
-                }
-            ],
-            "headers": [],
-            "_type": "request"
-        },
-        {
-            "_id": "req_5",
-            "parentId": "fld_2",
-            "name": "Listar Alunos (com paginação)",
-            "url": "{{ _.base_url }}/alunos?page=0&size=10",
-            "method": "GET",
-            "body": {},
-            "parameters": [
-                {
-                    "name": "page",
-                    "value": "0"
-                },
-                {
-                    "name": "size",
-                    "value": "10"
-                }
-            ],
-            "headers": [],
-            "_type": "request"
-        },
-        {
-            "_id": "req_6",
-            "parentId": "fld_2",
-            "name": "Buscar Aluno por ID",
-            "url": "{{ _.base_url }}/alunos/1",
-            "method": "GET",
-            "body": {},
-            "parameters": [],
-            "headers": [],
-            "_type": "request"
-        },
-        {
-            "_id": "req_7",
-            "parentId": "fld_2",
-            "name": "Atualizar Aluno",
-            "url": "{{ _.base_url }}/alunos/1",
-            "method": "PUT",
-            "body": {
-                "mimeType": "application/json",
-                "text": "{\n  \"nome\": \"João Silva Santos\",\n  \"email\": \"joao.silva@uniesp.edu.br\",\n  \"telefone\": \"(11) 98765-4321\",\n  \"curso\": \"CIENCIA_DA_COMPUTACAO\",\n  \"matricula\": \"2024001\",\n  \"periodo\": \"P4\",\n  \"stacksIds\": [1, 2, 3, 5]\n}"
-            },
-            "parameters": [],
-            "headers": [
-                {
-                    "name": "Content-Type",
-                    "value": "application/json"
-                }
-            ],
-            "_type": "request"
-        },
-        {
-            "_id": "req_8",
-            "parentId": "fld_2",
-            "name": "Excluir Aluno",
-            "url": "{{ _.base_url }}/alunos/1",
-            "method": "DELETE",
-            "body": {},
-            "parameters": [],
-            "headers": [],
-            "_type": "request"
-        },
-        {
-            "_id": "req_9",
-            "parentId": "fld_2",
-            "name": "Criar Aluno - Maria Oliveira",
-            "url": "{{ _.base_url }}/alunos",
-            "method": "POST",
-            "body": {
-                "mimeType": "application/json",
-                "text": "{\n  \"nome\": \"Maria Oliveira\",\n  \"email\": \"maria.oliveira@uniesp.edu.br\",\n  \"telefone\": \"(11) 91234-5678\",\n  \"curso\": \"ENGENHARIA_DE_SOFTWARE\",\n  \"matricula\": \"2024002\",\n  \"periodo\": \"P5\",\n  \"stacksIds\": [3, 4, 6]\n}"
-            },
-            "parameters": [],
-            "headers": [
-                {
-                    "name": "Content-Type",
-                    "value": "application/json"
-                }
-            ],
-            "_type": "request"
-        },
-        {
-            "_id": "req_10",
-            "parentId": "fld_2",
-            "name": "Criar Aluno - Pedro Santos",
-            "url": "{{ _.base_url }}/alunos",
-            "method": "POST",
-            "body": {
-                "mimeType": "application/json",
-                "text": "{\n  \"nome\": \"Pedro Santos\",\n  \"email\": \"pedro.santos@uniesp.edu.br\",\n  \"telefone\": \"(11) 99999-8888\",\n  \"curso\": \"SISTEMAS_DE_INFORMACAO\",\n  \"matricula\": \"2024003\",\n  \"periodo\": \"P2\",\n  \"stacksIds\": [1, 5]\n}"
-            },
-            "parameters": [],
-            "headers": [
-                {
-                    "name": "Content-Type",
-                    "value": "application/json"
-                }
-            ],
-            "_type": "request"
-        },
-        {
-            "_id": "fld_1",
-            "parentId": "wrk_1",
-            "name": "Stacks",
-            "_type": "request_group"
-        },
-        {
-            "_id": "fld_2",
-            "parentId": "wrk_1",
-            "name": "Alunos",
-            "_type": "request_group"
-        },
-        {
-            "_id": "wrk_1",
-            "name": "Fabrica Software API",
-            "_type": "workspace"
-        },
-        {
-            "_id": "env_1",
-            "parentId": "wrk_1",
-            "name": "Base Environment",
-            "data": {
-                "base_url": "http://localhost:8080/api"
-            },
-            "_type": "environment"
+          "name": "Content-Type",
+          "value": "application/json"
         }
-    ]
+      ],
+      "_type": "request"
+    },
+    {
+      "_id": "req_3",
+      "parentId": "fld_2",
+      "name": "Listar Alunos",
+      "url": "{{ _.base_url }}/alunos",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "_type": "request"
+    },
+    {
+      "_id": "req_4",
+      "parentId": "fld_2",
+      "name": "Listar Alunos (com busca)",
+      "url": "{{ _.base_url }}/alunos?q=João",
+      "method": "GET",
+      "body": {},
+      "parameters": [
+        {
+          "name": "q",
+          "value": "João"
+        }
+      ],
+      "headers": [],
+      "_type": "request"
+    },
+    {
+      "_id": "req_5",
+      "parentId": "fld_2",
+      "name": "Listar Alunos (com paginação)",
+      "url": "{{ _.base_url }}/alunos?page=0&size=10",
+      "method": "GET",
+      "body": {},
+      "parameters": [
+        {
+          "name": "page",
+          "value": "0"
+        },
+        {
+          "name": "size",
+          "value": "10"
+        }
+      ],
+      "headers": [],
+      "_type": "request"
+    },
+    {
+      "_id": "req_6",
+      "parentId": "fld_2",
+      "name": "Buscar Aluno por ID",
+      "url": "{{ _.base_url }}/alunos/1",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "_type": "request"
+    },
+    {
+      "_id": "req_7",
+      "parentId": "fld_2",
+      "name": "Atualizar Aluno",
+      "url": "{{ _.base_url }}/alunos/1",
+      "method": "PUT",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"nome\": \"João Silva Santos\",\n  \"email\": \"joao.silva@uniesp.edu.br\",\n  \"telefone\": \"(11) 98765-4321\",\n  \"curso\": \"CIENCIA_DA_COMPUTACAO\",\n  \"matricula\": \"2024001\",\n  \"periodo\": \"P4\",\n  \"stacksIds\": [1, 2, 3, 5]\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "_type": "request"
+    },
+    {
+      "_id": "req_8",
+      "parentId": "fld_2",
+      "name": "Excluir Aluno",
+      "url": "{{ _.base_url }}/alunos/1",
+      "method": "DELETE",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "_type": "request"
+    },
+    {
+      "_id": "req_9",
+      "parentId": "fld_2",
+      "name": "Criar Aluno - Maria Oliveira",
+      "url": "{{ _.base_url }}/alunos",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"nome\": \"Maria Oliveira\",\n  \"email\": \"maria.oliveira@uniesp.edu.br\",\n  \"telefone\": \"(11) 91234-5678\",\n  \"curso\": \"ENGENHARIA_DE_SOFTWARE\",\n  \"matricula\": \"2024002\",\n  \"periodo\": \"P5\",\n  \"stacksIds\": [3, 4, 6]\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "_type": "request"
+    },
+    {
+      "_id": "req_10",
+      "parentId": "fld_2",
+      "name": "Criar Aluno - Pedro Santos",
+      "url": "{{ _.base_url }}/alunos",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"nome\": \"Pedro Santos\",\n  \"email\": \"pedro.santos@uniesp.edu.br\",\n  \"telefone\": \"(11) 99999-8888\",\n  \"curso\": \"SISTEMAS_DE_INFORMACAO\",\n  \"matricula\": \"2024003\",\n  \"periodo\": \"P2\",\n  \"stacksIds\": [1, 5]\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "_type": "request"
+    },
+    {
+      "_id": "fld_1",
+      "parentId": "wrk_1",
+      "name": "Stacks",
+      "_type": "request_group"
+    },
+    {
+      "_id": "fld_2",
+      "parentId": "wrk_1",
+      "name": "Alunos",
+      "_type": "request_group"
+    },
+    {
+      "_id": "fld_3",
+      "parentId": "wrk_1",
+      "name": "Alocacoes",
+      "_type": "request_group"
+    },
+    {
+      "_id": "req_aloc_1",
+      "parentId": "fld_3",
+      "name": "Criar Alocacao",
+      "url": "{{ _.base_url }}/alocacoes",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"alunoId\": 1,\n  \"projetoId\": 1,\n  \"papel\": \"DEV_BACKEND\",\n  \"dataInicio\": \"2025-03-01\",\n  \"cargaHorariaPrevista\": 120,\n  \"observacoes\": \"Alocação inicial do aluno no projeto\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "_type": "request"
+    },
+    {
+      "_id": "req_aloc_2",
+      "parentId": "fld_3",
+      "name": "Listar Alocacoes",
+      "url": "{{ _.base_url }}/alocacoes",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "_type": "request"
+    },
+    {
+      "_id": "req_aloc_3",
+      "parentId": "fld_3",
+      "name": "Buscar Alocacao por ID",
+      "url": "{{ _.base_url }}/alocacoes/1",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "_type": "request"
+    },
+    {
+      "_id": "req_aloc_4",
+      "parentId": "fld_3",
+      "name": "Listar Alocacoes por Aluno",
+      "url": "{{ _.base_url }}/alocacoes/aluno/1",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "_type": "request"
+    },
+    {
+      "_id": "req_aloc_5",
+      "parentId": "fld_3",
+      "name": "Listar Alocacoes por Projeto",
+      "url": "{{ _.base_url }}/alocacoes/projeto/1",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "_type": "request"
+    },
+    {
+      "_id": "req_aloc_6",
+      "parentId": "fld_3",
+      "name": "Atualizar Alocacao",
+      "url": "{{ _.base_url }}/alocacoes/1",
+      "method": "PUT",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"papel\": \"DEV_FULLSTACK\",\n  \"cargaHorariaPrevista\": 150,\n  \"cargaHorariaRealizada\": 80,\n  \"observacoes\": \"Alocação atualizada - aluno está evoluindo bem\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "_type": "request"
+    },
+    {
+      "_id": "req_aloc_7",
+      "parentId": "fld_3",
+      "name": "Encerrar Participacao",
+      "url": "{{ _.base_url }}/alocacoes/1/encerrar",
+      "method": "PUT",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"cargaHorariaRealizada\": 120,\n  \"observacoes\": \"Aluno concluiu a participação com sucesso\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "_type": "request"
+    },
+    {
+      "_id": "req_aloc_8",
+      "parentId": "fld_3",
+      "name": "Excluir Alocacao",
+      "url": "{{ _.base_url }}/alocacoes/1",
+      "method": "DELETE",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "_type": "request"
+    },
+    {
+      "_id": "wrk_1",
+      "name": "Fabrica Software API",
+      "_type": "workspace"
+    },
+    {
+      "_id": "env_1",
+      "parentId": "wrk_1",
+      "name": "Base Environment",
+      "data": {
+        "base_url": "http://localhost:8080/api"
+      },
+      "_type": "environment"
+    }
+  ]
 }

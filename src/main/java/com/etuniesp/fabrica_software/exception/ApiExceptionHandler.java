@@ -1,4 +1,5 @@
 package com.etuniesp.fabrica_software.exception;
+
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
