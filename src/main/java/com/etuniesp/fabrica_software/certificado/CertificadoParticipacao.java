@@ -18,4 +18,40 @@ import lombok.*;
 @AllArgsConstructor
 @Builder
 public class CertificadoParticipacao {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "aluno_id", nullable = false)
+    @NotNull
+    private Aluno aluno;
+
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "projeto_id", nullable = false)
+    @NotNull
+    private Projeto projeto;
+
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "alocacao_id", nullable = false)
+    @NotNull
+    private Alocacao alocacao;
+
+    @NotBlank
+    @Column(name = "codigo_verificacao", nullable = false, length = 80)
+    private String codigoVerificacao;
+
+    @NotNull
+    @Column(nullable = false)
+    @Builder.Default
+    private Integer versao = 1; 
+
+    @NotNull
+    @Column(nullable = false)
+    @Builder.Default
+    private Boolean ativo = true; 
+
+    @Column(name = "pdf_url", length = 300)
+    private String pdfUrl; 
 }
