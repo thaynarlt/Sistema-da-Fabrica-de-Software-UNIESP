@@ -16,7 +16,7 @@ public record ProjetoUpdateDTO(
         StatusProjeto status,
         LocalDate dataInicio,
         LocalDate dataFim,
-        Long professorId,
+        // Long professorId, // REMOVIDO: Relacionamento com Professor não foi solicitado para entrega
         Set<Long> stacksIds,
         Set<Long> alunosIds
 ) {}
