@@ -22,4 +22,29 @@ public class ApiExceptionHandler {
     public Map<String, Object> conflict(DataIntegrityViolationException ex) {
         return Map.of("timestamp", Instant.now(), "error", "CONFLICT", "message", ex.getMessage());
     }
+
+    @ExceptionHandler(IllegalStateException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public Map<String, Object> illegalState(IllegalStateException ex) {
+        return Map.of("timestamp", Instant.now(), "error", "BAD_REQUEST", "message", ex.getMessage());
+    }
+
+    @ExceptionHandler(IllegalArgumentException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public Map<String, Object> illegalArgument(IllegalArgumentException ex) {
+        return Map.of("timestamp", Instant.now(), "error", "BAD_REQUEST", "message", ex.getMessage());
+    }
+
+    @ExceptionHandler(RuntimeException.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    public Map<String, Object> runtimeException(RuntimeException ex) {
+        // Log detalhado para debug
+        ex.printStackTrace();
+        return Map.of(
+            "timestamp", Instant.now(), 
+            "error", "INTERNAL_SERVER_ERROR", 
+            "message", ex.getMessage() != null ? ex.getMessage() : "Erro interno do servidor",
+            "cause", ex.getCause() != null ? ex.getCause().getMessage() : "N/A"
+        );
+    }
 }

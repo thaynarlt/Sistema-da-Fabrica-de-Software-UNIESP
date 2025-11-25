@@ -25,3 +25,9 @@ logging:
     org.hibernate.SQL: DEBUG
     org.hibernate.type.descriptor.sql.BasicBinder: TRACE
 
+# Configurações de Certificados
+app:
+  certificados:
+    diretorio: ./certificados
+    url-base: http://localhost:8080/api/certificados-participacao
+

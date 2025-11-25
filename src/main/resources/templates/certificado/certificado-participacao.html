@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Certificado de Participação</title>
+    <style>
+        @page {
+            size: A4 landscape;
+            margin: 15mm;
+        }
+        body {
+            font-family: 'Times New Roman', serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #ffffff;
+        }
+        .certificado {
+            border: 6px solid #1a4d7a;
+            padding: 40px;
+            background-color: white;
+            text-align: center;
+            height: 100%;
+            box-sizing: border-box;
+        }
+        .titulo {
+            font-size: 32px;
+            font-weight: bold;
+            color: #1a4d7a;
+            margin-bottom: 15px;
+            margin-top: 10px;
+        }
+        .subtitulo {
+            font-size: 20px;
+            color: #333333;
+            margin-bottom: 25px;
+        }
+        .texto {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #333333;
+            margin: 15px 0;
+        }
+        .nome-aluno {
+            font-size: 24px;
+            font-weight: bold;
+            color: #1a4d7a;
+            margin: 20px 0;
+        }
+        .detalhes {
+            font-size: 14px;
+            color: #cc0000;
+            margin-top: 25px;
+            font-weight: bold;
+        }
+        .codigo-verificacao {
+            font-size: 10px;
+            color: #999999;
+            margin-top: 30px;
+            border-top: 1px solid #dddddd;
+            padding-top: 15px;
+        }
+        strong {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="certificado">
+        <div class="titulo">CERTIFICADO DE PARTICIPAÇÃO</div>
+        <div class="subtitulo">FÁBRICA DE SOFTWARE - UNIESP</div>
+        
+        <div class="texto">
+            Certificamos que
+        </div>
+        
+        <div class="nome-aluno" th:text="${alunoNome}">
+            Nome do Aluno
+        </div>
+        
+        <div class="texto">
+            participou do projeto <strong th:text="${projetoTitulo}">Nome do Projeto</strong>,
+            no semestre <strong th:text="${semestre}">2025.1</strong>,
+            desempenhando o papel de <strong th:text="${papel}">Papel</strong>,
+            com carga horária de <strong th:text="${cargaHoraria}">120</strong> horas.
+        </div>
+        
+        <div class="detalhes">
+            <p>Este certificado comprova a participação efetiva do aluno no projeto mencionado.</p>
+        </div>
+        
+        <div class="codigo-verificacao">
+            <p>Código de Verificação: <strong th:text="${codigoVerificacao}">CODIGO</strong></p>
+            <p>Para verificar a autenticidade deste certificado, acesse:</p>
+            <p th:text="${urlVerificacao}">https://fabrica.uniesp.edu.br/verificar/CODIGO</p>
+        </div>
+    </div>
+</body>
+</html>
